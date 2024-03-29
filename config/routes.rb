@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  scope module: :public do
+    root 'homes#top'
+  end
 
   #管理者用
   # URL /admin/sign_in...
@@ -14,6 +17,6 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get '/' => 'homes#top'
+    root 'homes#top'
   end
 end
