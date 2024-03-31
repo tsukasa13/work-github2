@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'homes#top'
-    resources :customers, only: [:show, :edit]
+    get 'customers/mypage' => 'customers#show'
+    get 'customers/information/edit' => 'customers#edit'
   end
 
   #管理者用
