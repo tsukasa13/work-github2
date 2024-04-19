@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'customers/mypage' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
+    patch 'customers/information' => 'customers#update'
   end
 
   #管理者用
