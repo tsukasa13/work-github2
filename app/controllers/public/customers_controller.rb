@@ -14,8 +14,8 @@ class Public::CustomersController < ApplicationController
     customer.update(customer_params)
     redirect_to customers_mypage_path
   end
-  
-  def withdrawal
+
+  def withdraw
     @customer = current_customer
     @customer.update(is_deleted: true)
     reset_session
