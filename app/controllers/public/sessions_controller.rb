@@ -32,21 +32,21 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     new_customer_session_path
   end
-  
+
   private
   # アクティブであるかを判断するメゾット
   def customer_state
     # [処理内容1] 入力されたemailからアカウントを1件取得
-    customer = Customer.find_by(email: params[:customer][:email])
+    @customer = Customer.find_by(email: params[:customer][:email])
     # [処理内容2] アカウントを取得できなかった場合、このメソッドを終了する
-    return if customer.nil?
+    return if @customer.nil?
     # [処理内容3] 取得したアカウントのパスワードと入力されたパスワードが一致していない場合、このメソッドを終了する
-    return unless customer.valid_password?(params[:customer][:password])
+    return unless @customer.valid_password?(params[:customer][:password])
     # [処理ないよう4] アクティブでない会員に対する処理
-    if is_deleted == true
+    if @customer.is_deleted == true
       flash[:notice] = "退会済みです。再度ご登録してご利用ください"
       redirect_to new_customer_registration_path
-    else is_deleted == false
+    else
       flash[:notice] = "項目を入力してください"
     end
   end
