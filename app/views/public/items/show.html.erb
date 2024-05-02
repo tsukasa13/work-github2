@@ -1,1 +1,6 @@
-<h1>商品詳細</h1>
+<div>
+  <%= image_tag @item.get_image %>
+  <h1><%= @item.name %></h1>
+  <p><%= @item.introduction %></p>
+  <p>¥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</p>
+</div>
