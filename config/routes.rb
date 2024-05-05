@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     patch 'customers/information' => 'customers#update'
     get 'customers/confirm_withdraw' => 'customers#confirm_withdraw', as: 'confirm_withdraw'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show, :new]
+    resources :cart_item, only: [:index, :update, :destroy, :create]
   end
 
   #管理者用

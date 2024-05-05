@@ -1,6 +1,15 @@
 <div>
-  <%= image_tag @item.get_image %>
-  <h1><%= @item.name %></h1>
-  <p><%= @item.introduction %></p>
-  <p>¥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</p>
+  <%= form_with model: @cart_item, url: cart_item_path(@cart_item.id) do |f| %>
+    <%= image_tag @item.get_image %>
+    <h1><%= @item.name %></h1>
+    <p><%= @item.introduction %></p>
+    <p>¥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</p>
+
+    <% if customer_signed_in? %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4], ['5',5], ['6',6], ['7',7], ['8',8], ['9',9], ['10',10]] %>
+      <%= f.submit "カートに入れる", class: "btn btn-success" %>
+    <% end %>
+  <% end %>
 </div>
