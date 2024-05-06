@@ -5,6 +5,7 @@ class Public::CartItemsController < ApplicationController
   end
   
   def update
+    
   end
   
   def destroy
