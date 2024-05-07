@@ -1,5 +1,5 @@
 <div>
-  <%= form_with model: @cart_item, url: cart_item_path do |f| %>
+  <%= form_with model: @cart_item, url: cart_items_path do |f| %>
     <%= image_tag @item.get_image %>
     <h1><%= @item.name %></h1>
     <p><%= @item.introduction %></p>
