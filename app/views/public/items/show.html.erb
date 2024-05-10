@@ -1,6 +1,6 @@
 <div>
   <%= form_with model: @cart_item, url: cart_items_path do |f| %>
-    <%= image_tag @item.get_image %>
+    <%= image_tag @item.get_image, size: "400x300" %>
     <h1><%= @item.name %></h1>
     <p><%= @item.introduction %></p>
     <p>¥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</p>
