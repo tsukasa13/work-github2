@@ -12,6 +12,7 @@
             <th>小計</th>
           </tr>
         </thead>
+        <% total = 0 %>
         <% @cart_items.each do |cart_item| %>
           <tbody>
             <tr>
@@ -24,24 +25,27 @@
               <td><%= cart_item.subtotal %></td>
             </tr>
           </tbody>
+          <% total += (cart_item.item.price*cart_item.amount)*1.1 %>
         <% end %>
       </table>
     </div>
 
     <div>
       <table>
+        <% @order.postage = 800 %>
         <thead>
           <tr>
             <th>送料</th>
-            <td></td>
+            <td><%= @order.postage %></td>
           </tr>
           <tr>
             <th>商品合計</th>
-            <td></td>
+            <td><%= total.to_i %></td>
           </tr>
           <tr>
             <th>請求金額</th>
-            <td></td>
+            <% @order.payment_amount = @order.postage + total.to_i %>
+            <td><%= @order.payment_amount %></td>
           </tr>
         </thead>
       </table>
