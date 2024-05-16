@@ -24,6 +24,7 @@ class Public::OrdersController < ApplicationController
     @order.save
     current_customer.cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
+      @order_detail.order_id = @order.id
       @order_detail.item_id = cart_item.item_id
       @order_detail.amount = cart_item.amount
       @order_detail.tax_price = (cart_item.item.price * 1.1).floor
@@ -34,7 +35,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders.all
+    @orders = current_customer.orders
   end
 
   def show
