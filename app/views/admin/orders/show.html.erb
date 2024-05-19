@@ -36,22 +36,22 @@
   </div>
 
   <div>
-      <table>
-        <thead>
-          <tr>
-            <th>商品合計</th>
-            <td><%= (@order.payment_amount - @order.postage).to_s(:delimited) %></td>
-          </tr>
-          <tr>
-            <th>送料</th>
-            <% @order.postage = 800 %>
-            <td><%= @order.postage %></td>
-          </tr>
-          <tr>
-            <th>請求金額</th>
-            <td><%= @order.payment_amount.to_s(:delimited) %></td>
-          </tr>
-        </thead>
-      </table>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>商品合計</th>
+          <td><%= (@order.payment_amount - @order.postage).to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <% @order.postage = 800 %>
+          <td><%= @order.postage %></td>
+        </tr>
+        <tr>
+          <th>請求金額</th>
+          <td><%= @order.payment_amount.to_s(:delimited) %></td>
+        </tr>
+      </thead>
+    </table>
+  </div>
 </div>
