@@ -1,3 +1,57 @@
 <div>
   <h3>注文履歴詳細</h3>
+  <div>
+    <p>購入者 <%= @order.delivery_name %></p>
+    <p>注文日 <%= @order.created_at.strftime("%Y/%m/%d") %></p>
+    <p>
+      配送先
+      〒<%= @order.shipping_postal_code %>
+      <%= @order.shipping_address %><br>
+      <%= @order.delivery_name %>
+    </p>
+    <p>支払方法 <%= @order.method_of_payment_i18n %></p>
+  </div>
+
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <% @order_details.each do |order_detail| %>
+        <thody>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.item.add_tax_price %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= (order_detail.tax_price*order_detail.amount).floor.to_s(:delimited) %></td>
+          </tr>
+        </thody>
+      <% end %>
+    </table>
+  </div>
+
+  <div>
+      <table>
+        <thead>
+          <tr>
+            <th>商品合計</th>
+            <td><%= (@order.payment_amount - @order.postage).to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th>送料</th>
+            <% @order.postage = 800 %>
+            <td><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <td><%= @order.payment_amount.to_s(:delimited) %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
 </div>
