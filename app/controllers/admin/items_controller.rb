@@ -7,8 +7,10 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      flash[:notice] = "投稿に成功しました。"
       redirect_to admin_item_path(@item)
     else
+      flash.now[:alert] = "投稿に失敗しました。"
       render :new
     end
   end
