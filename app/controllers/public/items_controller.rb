@@ -1,6 +1,7 @@
 class Public::ItemsController < ApplicationController
 
   def index
+    @customer = current_customer
     @items = Item.page(params[:page])
   end
 
