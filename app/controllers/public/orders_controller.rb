@@ -2,11 +2,13 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def new
+    @customer = current_customer
     @order = Order.new
     @address = current_customer.address
   end
 
   def confirm
+    @customer = current_customer
     @order = Order.new(order_params)
     @order.shipping_postal_code = current_customer.postal_code
     @order.shipping_address = current_customer.address
@@ -16,6 +18,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
+    @customer = current_customer
   end
 
   def create
@@ -35,10 +38,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @customer = current_customer
     @orders = current_customer.orders.page(params[:page])
   end
 
   def show
+    @customer = current_customer
     @order = Order.find(params[:id])
     @order_details = @order.order_details.page(params[:page])
   end
