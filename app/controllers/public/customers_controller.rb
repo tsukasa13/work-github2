@@ -15,6 +15,10 @@ class Public::CustomersController < ApplicationController
     redirect_to customers_mypage_path
   end
 
+  def confirm_withdraw
+    @customer = current_customer
+  end
+
   def withdraw
     @customer = current_customer
     @customer.update(is_deleted: true)
