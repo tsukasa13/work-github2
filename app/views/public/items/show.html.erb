@@ -2,19 +2,23 @@
   <div class="row">
     <div class="mx-auto">
       <%= form_with model: @cart_item, url: cart_items_path do |f| %>
-        <div class="d-flex">
-          <div>
+        <div class="d-flex p-5 bd-highlight">
+          <div class="p-2 bd-highlight">
             <%= image_tag @item.get_image, size: "400x300" %>
+          </div>
+          <div class="p-2 bd-highlight">
             <h1><%= @item.name %></h1>
-            <p><%= @item.introduction %></p>
-            <p>¥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</p>
+            <div class="mb-5"><%= @item.introduction %></div>
+            <h3>¥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</h3>
 
-            <% if customer_signed_in? %>
-              <%= f.hidden_field :customer_id, :value => current_customer.id %>
-              <%= f.hidden_field :item_id, :value => @item.id %>
-              <%= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4], ['5',5], ['6',6], ['7',7], ['8',8], ['9',9], ['10',10]] %>
-              <%= f.submit "カートに入れる", class: "btn btn-success" %>
-            <% end %>
+            <div>
+              <% if customer_signed_in? %>
+                <%= f.hidden_field :customer_id, :value => current_customer.id %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+                <%= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4], ['5',5], ['6',6], ['7',7], ['8',8], ['9',9], ['10',10]] %>
+                <%= f.submit "カートに入れる", class: "btn btn-success" %>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>
