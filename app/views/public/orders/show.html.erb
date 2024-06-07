@@ -1,27 +1,32 @@
-<div>
-  <h3>注文履歴詳細</h3>
-  <div>
-    <h4>注文情報</h4>
-    <p>注文日 <%= @order.created_at.strftime('%Y/%m/%d') %></p>
-    <p>
-      配送先
-      〒<%= @order.shipping_postal_code %><br>
-      <%= @order.shipping_address %><br>
-      <%= @order.delivery_name %>
-    </p>
-    <p>支払方法 <%= @order.method_of_payment_i18n %></p>
+<div class="container">
+  <div class="p-5">
+    <h3>注文履歴詳細</h3>
   </div>
 
-  <div>
-    <h4>請求情報</h4>
-    <p>商品合計 <%= (@order.payment_amount - @order.postage).to_s(:delimited) %></p>
-    <p>配送料 <%= @order.postage %></p>
-    <p>ご請求額 <%= @order.payment_amount %></p>
+  <div class="d-flex bd-highlight">
+    <div class="p-2 bd-highlight">
+      <h4>注文情報</h4>
+      <p>注文日 <%= @order.created_at.strftime('%Y/%m/%d') %></p>
+      <p>
+        配送先
+        〒<%= @order.shipping_postal_code %><br>
+        <%= @order.shipping_address %><br>
+        <%= @order.delivery_name %>
+      </p>
+      <p>支払方法 <%= @order.method_of_payment_i18n %></p>
+    </div>
+
+    <div class="p-2 bd-highlight">
+      <h4>請求情報</h4>
+      <p>商品合計 <%= (@order.payment_amount - @order.postage).to_s(:delimited) %></p>
+      <p>配送料 <%= @order.postage %></p>
+      <p>ご請求額 <%= @order.payment_amount %></p>
+    </div>
   </div>
 
   <div>
     <h4>注文内容</h4>
-    <table>
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>商品</th>
