@@ -1,7 +1,7 @@
-<div>
+<div class="container p-4">
   <h3>注文履歴一覧</h3>
-  <div>
-    <table>
+  <div class="row mx-auto p-5">
+    <table class="table table-striped table-bordered bg-light">
       <thead>
         <tr>
           <th>注文日</th>
@@ -22,11 +22,11 @@
             </td>
             <td>
               <% order.order_details.each do |order_detail| %>
-                <%= order_detail.item.name %>
+                <%= order_detail.item.name %><br>
               <% end %>
             </td>
-            <td><%= order.payment_amount %></td>
-            <td><%= link_to "表示する", order_path(order.id) %></td>
+            <td><%= order.payment_amount %>円</td>
+            <td><%= link_to "表示する", order_path(order.id), class: "btn btn-primary" %></td>
           </tr>
         </tbody>
       <% end %>
