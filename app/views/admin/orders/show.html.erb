@@ -1,6 +1,6 @@
-<div>
+<div class="container p-4">
   <h3>注文履歴詳細</h3>
-  <div>
+  <div class="col-10 p-4">
     <p>購入者 <%= @order.delivery_name %></p>
     <p>注文日 <%= @order.created_at.strftime("%Y/%m/%d") %></p>
     <p>
@@ -12,8 +12,8 @@
     <p>支払方法 <%= @order.method_of_payment_i18n %></p>
   </div>
 
-  <div>
-    <table>
+  <div class="col-10">
+    <table class="table table-striped table-bordered bg-light">
       <thead>
         <tr>
           <th>商品名</th>
@@ -35,8 +35,8 @@
     </table>
   </div>
 
-  <div>
-    <table>
+  <div class="col-3">
+    <table class="table table-striped table-bordered bg-light">
       <thead>
         <tr>
           <th>商品合計</th>
